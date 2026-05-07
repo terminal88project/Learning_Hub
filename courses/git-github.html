@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>آموزش کامل گیت و گیت‌هاب | EduHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', 'Tahoma', system-ui, -apple-system, sans-serif;
+            line-height: 1.65;
+            transition: background 0.3s ease, color 0.2s ease;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* ==================== تم روشن ==================== */
+        body.light-theme {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        body.light-theme .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        body.light-theme .container {
+            background: transparent;
+            box-shadow: none;
+        }
+        body.light-theme header {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 28px;
+        }
+        body.light-theme header h1 { color: #0f172a; }
+        body.light-theme .sub { color: #64748b; }
+        body.light-theme h2 {
+            color: #0f172a;
+            border-right-color: #3b82f6;
+        }
+        body.light-theme h3 { color: #3b82f6; }
+        body.light-theme .concept-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-right: 3px solid #3b82f6;
+        }
+        body.light-theme .concept-card:hover {
+            background: #fafcff;
+            border-color: #cbd5e1;
+        }
+        body.light-theme .concept-title { color: #3b82f6; }
+        body.light-theme .tip-note {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-right: 4px solid #10b981;
+        }
+        body.light-theme .symbol-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-right: 3px solid #f97316;
+        }
+        body.light-theme .symbol { color: #f97316; }
+        body.light-theme .cmd-block {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        body.light-theme .cmd-block:hover {
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+            border-color: #cbd5e1;
+        }
+        body.light-theme .cmd-command {
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        body.light-theme .cmd-text { color: #3b82f6; }
+        body.light-theme .copy-cmd { background: #3b82f6; }
+        body.light-theme .cmd-example {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        body.light-theme .cmd-exercise {
+            background: #fffbeb;
+            border-top: 1px solid #fde68a;
+            border-right: 4px solid #f59e0b;
+        }
+        body.light-theme .exercise-label { color: #78350f; }
+        body.light-theme .table-wrapper table {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+        }
+        body.light-theme .table-wrapper th {
+            background: #3b82f6;
+            color: white;
+        }
+        body.light-theme .table-wrapper td {
+            border-color: #e2e8f0;
+        }
+        body.light-theme .table-cmd { color: #3b82f6; }
+        body.light-theme .workflow-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        body.light-theme footer {
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+        }
+        body.light-theme .final-message { color: #3b82f6; }
+        
+        /* ==================== تم تیره ==================== */
+        body.dark-theme {
+            background: #0a0a0a;
+            color: #e5e5e5;
+        }
+        body.dark-theme .navbar {
+            background: rgba(20, 20, 30, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-theme .container {
+            background: transparent;
+        }
+        body.dark-theme header {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 20px;
+        }
+        body.dark-theme header h1 { color: #f1f5f9; }
+        body.dark-theme .sub { color: #a3a3a3; }
+        body.dark-theme h2 {
+            color: #f1f5f9;
+            border-right-color: #60a5fa;
+        }
+        body.dark-theme h3 { color: #60a5fa; }
+        body.dark-theme .concept-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-right: 3px solid #60a5fa;
+        }
+        body.dark-theme .concept-card:hover {
+            background: #222222;
+            border-color: #3a3a3a;
+        }
+        body.dark-theme .concept-title { color: #60a5fa; }
+        body.dark-theme .tip-note {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-right: 4px solid #34d399;
+        }
+        body.dark-theme .symbol-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-right: 3px solid #f97316;
+        }
+        body.dark-theme .symbol { color: #f97316; }
+        body.dark-theme .cmd-block {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+        }
+        body.dark-theme .cmd-block:hover {
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4);
+            border-color: #3a3a3a;
+        }
+        body.dark-theme .cmd-command {
+            background: #0f0f0f;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        body.dark-theme .cmd-text { color: #60a5fa; }
+        body.dark-theme .copy-cmd { background: #3b82f6; }
+        body.dark-theme .cmd-example {
+            background: #0f0f0f;
+            border-top: 1px solid #2a2a2a;
+        }
+        body.dark-theme .cmd-exercise {
+            background: #422006;
+            border-top: 1px solid #78350f;
+            border-right: 4px solid #f59e0b;
+            color: #fef3c7;
+        }
+        body.dark-theme .exercise-label { color: #fde68a; }
+        body.dark-theme .table-wrapper table {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+        }
+        body.dark-theme .table-wrapper th {
+            background: #1e3a8a;
+            color: white;
+        }
+        body.dark-theme .table-wrapper td {
+            border-color: #2a2a2a;
+        }
+        body.dark-theme .table-cmd { color: #60a5fa; }
+        body.dark-theme .workflow-box {
+            background: #0f0f0f;
+            border: 1px solid #2a2a2a;
+        }
+        body.dark-theme footer {
+            border-top: 1px solid #2a2a2a;
+            color: #666666;
+        }
+        body.dark-theme .final-message { color: #60a5fa; }
+        
+        /* ==================== کامپوننت‌های مشترک ==================== */
+        .navbar {
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            border-radius: 60px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 0.45rem 1.3rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .nav-btn { background: #3b82f6; color: white; }
+        .theme-btn { background: #475569; color: white; }
+        .nav-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        header {
+            text-align: center;
+            padding: 28px;
+            margin-bottom: 32px;
+            transition: all 0.3s ease;
+        }
+        header h1 { font-size: 1.8rem; margin-bottom: 12px; }
+        .sub { font-size: 0.9rem; }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin: 28px 0 18px 0;
+            border-right: 4px solid;
+            padding-right: 15px;
+            font-weight: 700;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin: 18px 0 12px;
+        }
+        
+        .concept-card {
+            border-radius: 16px;
+            padding: 18px;
+            margin: 16px 0;
+            transition: all 0.2s;
+        }
+        .concept-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .tip-note {
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .tip-note code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+        body.dark-theme .tip-note code { background: rgba(255,255,255,0.1); }
+        
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .symbol-card {
+            border-radius: 14px;
+            padding: 12px 15px;
+            transition: all 0.2s;
+        }
+        .symbol-card:hover { transform: translateX(-3px); }
+        .symbol {
+            font-family: monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            direction: ltr;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        
+        .cmd-wrapper { margin: 22px 0; }
+        .cmd-block {
+            border-radius: 16px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+        .cmd-block:hover { transform: translateX(-3px); }
+        .cmd-command {
+            padding: 14px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .cmd-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            direction: ltr;
+            text-align: left;
+            word-break: break-word;
+        }
+        .copy-cmd {
+            border: none;
+            padding: 5px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.8rem;
+        }
+        .copy-cmd:hover { transform: scale(0.97); filter: brightness(1.05); }
+        .cmd-description, .cmd-example, .cmd-exercise { padding: 14px 20px; }
+        .cmd-example {
+            font-family: monospace;
+            direction: ltr;
+            text-align: left;
+            font-size: 0.8rem;
+            white-space: pre-line;
+        }
+        .cmd-exercise { border-right: 4px solid; }
+        .exercise-label {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid;
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        th { font-weight: 700; }
+        .table-cmd {
+            font-family: monospace;
+            direction: ltr;
+            text-align: left;
+            font-size: 0.8rem;
+        }
+        
+        .workflow-box {
+            border-radius: 16px;
+            padding: 22px;
+            margin-top: 20px;
+        }
+        .workflow-box code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+        body.dark-theme .workflow-box code { background: rgba(255,255,255,0.1); }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .final-message {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .navbar { flex-direction: column; text-align: center; border-radius: 30px; top: 12px; }
+            .nav-buttons { width: 100%; justify-content: center; }
+            .container { padding: 0; }
+            header h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.3rem; }
+            .cmd-text { font-size: 0.75rem; }
+            .symbol-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.2rem; }
+            .cmd-command { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo"><i class="fas fa-code"></i> EduHub</div>
+    <div class="nav-buttons">
+        <button id="themeToggleBtn" class="nav-btn theme-btn"><i class="fas fa-moon"></i> <span>تم دارک</span></button>
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> خانه</a>
+    </div>
+</div>
+
+<div class="container">
+    <header>
+        <h1>آموزش گیت (Git) و گیت‌هاب (GitHub)</h1>
+        <div class="sub">✅ توضیح کامل نمادها، دستورات پرکاربرد، مثال و تمرین | قابل کپی با یک کلیک</div>
+        <div style="margin-top: 10px; font-size: 0.85rem;">🎯 کامل ترین مرجع به زبان ساده</div>
+    </header>
+
+    <h2>مفاهیم پایه</h2>
+    <div class="concept-card"><div class="concept-title">مخزن (Repository)</div><div>محل ذخیره تمام نسخه‌ها و تاریخچه پروژه. دو نوع: محلی (روی کامپیوتر) و ریموت (روی گیت‌هاب).</div></div>
+    <div class="concept-card"><div class="concept-title">کامیت (Commit)</div><div>ثبت یک نسخه جدید با پیام توضیحی. هر کامیت یک شناسه یکتا دارد.</div></div>
+    <div class="concept-card"><div class="concept-title">مرحله آماده‌سازی (Stage)</div><div>محلی برای جمع‌آوری تغییرات قبل از کامیت. با <code>git add</code> فایل‌ها را به Stage می‌بریم.</div></div>
+    <div class="concept-card"><div class="concept-title">شاخه (Branch)</div><div>خط توسعه جداگانه. شاخه اصلی معمولاً <strong>main</strong> یا <strong>master</strong> است.</div></div>
+    <div class="tip-note"><strong>💡 نکته مهم:</strong> قبل از هر کاری حتماً این دو دستور را برای معرفی هویت خود اجرا کنید:<br><code>git config --global user.name "نام شما"</code><br><code>git config --global user.email "ایمیل شما"</code></div>
+
+    <h2>نمادهای گیت (در خروجی git status و git diff)</h2>
+    <div class="symbol-grid">
+        <div class="symbol-card"><div class="symbol">??</div><div>فایل جدید و ردگیری نشده (untracked)</div></div>
+        <div class="symbol-card"><div class="symbol">A (سبز)</div><div>فایل به Stage اضافه شده (Added)</div></div>
+        <div class="symbol-card"><div class="symbol">M (قرمز)</div><div>فایل تغییر کرده ولی Stage نشده</div></div>
+        <div class="symbol-card"><div class="symbol">M (سبز)</div><div>فایل تغییر کرده و Stage شده</div></div>
+        <div class="symbol-card"><div class="symbol">D (قرمز)</div><div>فایل حذف شده ولی Stage نشده</div></div>
+        <div class="symbol-card"><div class="symbol">D (سبز)</div><div>فایل حذف شده و Stage شده</div></div>
+        <div class="symbol-card"><div class="symbol">UU / AA</div><div>تعارض (Conflict) - نیاز به حل دستی</div></div>
+    </div>
+
+    <h2>دستورات پرکاربرد گیت</h2>
+    <div id="commands-container"></div>
+
+    <h2>جدول خلاصه دستورات مهم</h2>
+    <div class="table-wrapper" id="summary-table-container"></div>
+
+    <div class="workflow-box">
+        <h3 style="margin-top: 0;">🔁 جریان کاری معمول روزمره</h3>
+        <p>1️⃣ <code>git status</code> ← بررسی وضعیت و مشاهده نمادها<br>
+        2️⃣ <code>git add .</code> ← اضافه کردن همه تغییرات به Stage<br>
+        3️⃣ <code>git commit -m "پیام مفید"</code> ← ثبت نسخه جدید<br>
+        4️⃣ <code>git push</code> ← ارسال به گیت‌هاب<br>
+        ➕ برای دریافت تغییرات دیگران: <code>git pull</code><br>
+        🌿 برای ساخت شاخه جدید: <code>git checkout -b name-feature</code>
+        </p>
+    </div>
+
+    <footer>تمرین عملی بهترین راه تسلط است.</footer>
+    <div class="final-message">این بار نوبت توعه 🫵🏻</div>
+</div>
+
+<script>
+    const commandsList = [
+        { command: "git init", description: "یک مخزن خالی گیت در پوشه فعلی ایجاد می‌کند.", example: "$ git init\n# خروجی: Initialized empty Git repository in /my-project/.git", exercise: "یک پوشه جدید بسازید، وارد آن شوید و git init را اجرا کنید." },
+        { command: "git status", description: "وضعیت فعلی مخزن را نشان می‌دهد (نمادهای ?? , M , A , D).", example: "$ git status\nOn branch main\nUntracked files:\n  (use \"git add <file>...\")\n\t?? newfile.txt", exercise: "یک فایل جدید بسازید و git status را ببینید." },
+        { command: "git add <file>", description: "یک فایل خاص را به Stage اضافه می‌کند.", example: "$ git add index.html", exercise: "فایل README.md بسازید، با git add README.md آن را Stage کنید." },
+        { command: "git add .", description: "همه فایل‌های تغییر کرده را به Stage اضافه می‌کند.", example: "$ git add .", exercise: "سه فایل جدید بسازید و با git add . همه را Stage کنید." },
+        { command: "git commit -m \"پیام\"", description: "ثبت نسخه جدید از فایل‌های Stage شده.", example: "$ git commit -m \"افزودن صفحه اصلی\"", exercise: "بعد از add، یک کامیت با پیام \"پروژه آغاز شد\" بزنید." },
+        { command: "git log --oneline", description: "نمایش خلاصه تاریخچه کامیت‌ها (هر کامیت یک خط).", example: "$ git log --oneline\na1b2c3d افزودن README", exercise: "چند کامیت بزنید و git log --oneline را امتحان کنید." },
+        { command: "git diff", description: "نمایش تفاوت فایل‌های فعلی (unstaged) با آخرین کامیت.", example: "$ git diff\ndiff --git a/index.html b/index.html\n- خط قدیمی\n+ خط جدید", exercise: "یک فایل متنی را تغییر دهید و git diff را بزنید." },
+        { command: "git diff --staged", description: "نمایش تفاوت فایل‌های Stage شده با آخرین کامیت.", example: "$ git diff --staged", exercise: "فایلی را تغییر دهید، Stage کنید و git diff --staged را بزنید." },
+        { command: "git branch", description: "لیست شاخه‌ها (شاخه فعلی با * مشخص می‌شود).", example: "$ git branch\n* main\n  develop", exercise: "git branch -v را برای مشاهده آخرین کامیت هر شاخه امتحان کنید." },
+        { command: "git checkout -b <branch>", description: "ایجاد شاخه جدید و جابجایی به آن (یک مرحله‌ای).", example: "$ git checkout -b feature-login", exercise: "یک شاخه جدید به نام bugfix بسازید." },
+        { command: "git merge <branch>", description: "ادغام شاخه دیگر با شاخه فعلی.", example: "$ git checkout main\n$ git merge feature-login", exercise: "در شاخه feature تغییراتی بدهید، سپس به main برگردید و merge کنید." },
+        { command: "git remote add origin <url>", description: "اتصال مخزن محلی به ریموت گیت‌هاب.", example: "$ git remote add origin https://github.com/username/repo.git", exercise: "یک مخزن در گیت‌هاب بسازید و با این دستور متصل کنید." },
+        { command: "git push -u origin main", description: "اولین بار ارسال به ریموت (تنظیم مسیر پیش‌فرض).", example: "$ git push -u origin main", exercise: "بعد از این، فقط git push کافی است." },
+        { command: "git push", description: "ارسال کامیت‌های محلی به ریموت.", example: "$ git push", exercise: "تغییرات را به گیت‌هاب بفرستید." },
+        { command: "git pull", description: "دریافت آخرین تغییرات از ریموت و ادغام.", example: "$ git pull origin main", exercise: "اگر تیمی کار می‌کنید، قبل از شروع کار pull بگیرید." },
+        { command: "git clone <url>", description: "دانلود یک مخزن از گیت‌هاب.", example: "$ git clone https://github.com/facebook/react.git", exercise: "یک پروژه متن‌باز ساده را clone کنید." }
+    ];
+
+    function renderCommands() {
+        const container = document.getElementById('commands-container');
+        if (!container) return;
+        container.innerHTML = '';
+        for (const cmd of commandsList) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'cmd-wrapper';
+            wrapper.innerHTML = `
+                <div class="cmd-block">
+                    <div class="cmd-command">
+                        <span class="cmd-text">${escapeHtml(cmd.command)}</span>
+                        <button class="copy-cmd">📋 کپی دستور</button>
+                    </div>
+                    <div class="cmd-description">📖 <strong>توضیح:</strong> ${escapeHtml(cmd.description)}</div>
+                    <div class="cmd-example">💻 <strong>مثال:</strong><br> ${escapeHtml(cmd.example).replace(/\n/g, '<br>')}</div>
+                    <div class="cmd-exercise"><div class="exercise-label">🧪 تمرین عملی</div>${escapeHtml(cmd.exercise)}</div>
+                </div>
+            `;
+            container.appendChild(wrapper);
+        }
+        attachCopyEvents();
+    }
+
+    function renderSummaryTable() {
+        const tableContainer = document.getElementById('summary-table-container');
+        if (!tableContainer) return;
+        let html = `<table><thead><tr><th>دستور</th><th>توضیح کوتاه</th><th>کاربرد</th></tr></thead><tbody>`;
+        for (const cmd of commandsList) {
+            let shortDesc = cmd.description.substring(0, 55);
+            if (cmd.description.length > 55) shortDesc += '...';
+            html += `<tr><td class="table-cmd">${escapeHtml(cmd.command)}</td><td>${escapeHtml(shortDesc)}</td><td>${getUsageCategory(cmd.command)}</td></tr>`;
+        }
+        html += `</tbody></table>`;
+        tableContainer.innerHTML = html;
+    }
+
+    function getUsageCategory(cmd) {
+        if (cmd.includes('init')) return 'شروع پروژه';
+        if (cmd.includes('status')) return 'بررسی وضعیت';
+        if (cmd.includes('add')) return 'Stage کردن';
+        if (cmd.includes('commit')) return 'ثبت نسخه';
+        if (cmd.includes('log')) return 'مشاهده تاریخچه';
+        if (cmd.includes('diff')) return 'مقایسه تغییرات';
+        if (cmd.includes('branch') && !cmd.includes('checkout')) return 'مدیریت شاخه';
+        if (cmd.includes('checkout')) return 'ساخت یا جابجایی شاخه';
+        if (cmd.includes('merge')) return 'ادغام';
+        if (cmd.includes('push')) return 'ارسال به گیت‌هاب';
+        if (cmd.includes('pull')) return 'گرفتن از گیت‌هاب';
+        if (cmd.includes('clone')) return 'دانلود پروژه';
+        return 'عمومی';
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function attachCopyEvents() {
+        const buttons = document.querySelectorAll('.copy-cmd');
+        for (const btn of buttons) {
+            btn.removeEventListener('click', copyHandler);
+            btn.addEventListener('click', copyHandler);
+        }
+    }
+
+    function copyHandler(e) {
+        const btn = e.currentTarget;
+        const parent = btn.closest('.cmd-command');
+        const cmdSpan = parent.querySelector('.cmd-text');
+        if (cmdSpan) {
+            const text = cmdSpan.innerText.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                const old = btn.innerHTML;
+                btn.innerHTML = '✅ کپی شد';
+                setTimeout(() => { btn.innerHTML = old; }, 1500);
+            }).catch(() => { alert('لطفاً دستی کپی کنید'); });
+        }
+    }
+
+    // ==================== مدیریت تم ====================
+    function initTheme() {
+        const saved = localStorage.getItem('eduhub-theme');
+        const btn = document.getElementById('themeToggleBtn');
+        if (saved === 'dark') {
+            document.body.classList.add('dark-theme');
+            document.body.classList.remove('light-theme');
+            if (btn) btn.innerHTML = '<i class="fas fa-sun"></i> <span>تم روشن</span>';
+        } else {
+            document.body.classList.add('light-theme');
+            document.body.classList.remove('dark-theme');
+            if (btn) btn.innerHTML = '<i class="fas fa-moon"></i> <span>تم دارک</span>';
+        }
+    }
+    
+    function toggleTheme() {
+        if (document.body.classList.contains('dark-theme')) {
+            document.body.classList.remove('dark-theme');
+            document.body.classList.add('light-theme');
+            localStorage.setItem('eduhub-theme', 'light');
+            const btn = document.getElementById('themeToggleBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-moon"></i> <span>تم دارک</span>';
+        } else {
+            document.body.classList.remove('light-theme');
+            document.body.classList.add('dark-theme');
+            localStorage.setItem('eduhub-theme', 'dark');
+            const btn = document.getElementById('themeToggleBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-sun"></i> <span>تم روشن</span>';
+        }
+    }
+    
+    renderCommands();
+    renderSummaryTable();
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        initTheme();
+        const themeBtn = document.getElementById('themeToggleBtn');
+        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+    });
+</script>
+</body>
+</html>

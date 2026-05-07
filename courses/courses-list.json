@@ -1,0 +1,42 @@
+[
+  {
+    "fileName": "roadmap.html",
+    "title": "🗺️ نقشه جامع برنامه‌نویسی",
+    "description": "راهنمای کامل ۱۲ حوزه تخصصی: فرانت‌اند، بک‌اند، موبایل، علم داده، بازی‌سازی و دوواپس.",
+    "tags": ["راهنما", "مسیر شغلی", "جامع"],
+    "icon": "fa-map",
+    "color": "linear-gradient(135deg, #667eea, #764ba2)"
+  },
+  {
+    "fileName": "git-github.html",
+    "title": "📦 آموزش گیت و گیت‌هاب",
+    "description": "مرجع کامل دستورات گیت، نمادها، رفع تعارض، کار با ریموت و تمرین‌های عملی.",
+    "tags": ["ورژن کنترل", "عملی", "Git"],
+    "icon": "fa-brands fa-git-alt",
+    "color": "linear-gradient(135deg, #f97316, #e11d48)"
+  },
+  {
+    "fileName": "cybersecurity.html",
+    "title": "🔒 دانشنامه امنیت سایبری",
+    "description": "۱۲ حمله پیشرفته + انواع کلاه‌های هکری، مکانیسم حملات و روش‌های دفاع لایه‌ای.",
+    "tags": ["امنیت", "هک اخلاقی", "حرفه‌ای"],
+    "icon": "fa-shield-virus",
+    "color": "linear-gradient(135deg, #0a0c14, #10b981)"
+  },
+  {
+    "fileName": "machine-learning.html",
+    "title": "🧠 ماشین لرنینگ با پایتون",
+    "description": "از مبانی تا پیاده‌سازی الگوریتم‌ها، شبکه‌های عصبی و کاربردهای صنعتی.",
+    "tags": ["AI", "پایتون", "علم داده"],
+    "icon": "fa-brain",
+    "color": "linear-gradient(135deg, #1e2a3a, #f39c12)"
+  },
+  {
+    "fileName": "docker.html",
+    "title": "🐳 آموزش جامع داکر (Docker)",
+    "description": "از صفر تا صد کانتینرسازی، دستورات کلیدی، Dockerfile، Compose و شبکه.",
+    "tags": ["Container", "DevOps", "عملی"],
+    "icon": "fa-brands fa-docker",
+    "color": "linear-gradient(135deg, #0f2b3d, #1e3a5f)"
+  }
+]

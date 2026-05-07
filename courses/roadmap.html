@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 نقشه راه برنامه‌نویسی | EduHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', 'Tahoma', system-ui, -apple-system, sans-serif;
+            line-height: 1.65;
+            transition: background 0.3s ease, color 0.2s ease;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* ==================== تم روشن ==================== */
+        body.light-theme {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        body.light-theme .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        body.light-theme .hero h1, body.light-theme .hero p { color: #0f172a; }
+        body.light-theme .domain-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        body.light-theme .domain-card:hover {
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+            border-color: #cbd5e1;
+        }
+        body.light-theme .card-header {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+        body.light-theme .badge {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        body.light-theme .description {
+            color: #475569;
+            border-right-color: #3b82f6;
+        }
+        body.light-theme .section-title {
+            color: #3b82f6;
+        }
+        body.light-theme .tech-item {
+            background: #f8fafc;
+            border-right-color: #3b82f6;
+        }
+        body.light-theme .tech-name { color: #0f172a; }
+        body.light-theme .tech-desc { color: #475569; }
+        body.light-theme .tasks-list li { color: #475569; }
+        body.light-theme .tasks-list li:before { color: #3b82f6; }
+        body.light-theme .tool-badge {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+        body.light-theme .footer {
+            background: #0f172a;
+            color: #94a3b8;
+        }
+        
+        /* ==================== تم تیره ==================== */
+        body.dark-theme {
+            background: #0a0a0a;
+            color: #e5e5e5;
+        }
+        body.dark-theme .navbar {
+            background: rgba(20, 20, 30, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-theme .hero h1, body.dark-theme .hero p { color: #f1f5f9; }
+        body.dark-theme .domain-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        body.dark-theme .domain-card:hover {
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4);
+            border-color: #3a3a3a;
+        }
+        body.dark-theme .card-header {
+            background: linear-gradient(135deg, #1e3a8a, #4c1d95);
+        }
+        body.dark-theme .badge {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        body.dark-theme .description {
+            color: #a3a3a3;
+            border-right-color: #60a5fa;
+        }
+        body.dark-theme .section-title {
+            color: #60a5fa;
+        }
+        body.dark-theme .tech-item {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-right: 3px solid #60a5fa;
+        }
+        body.dark-theme .tech-name { color: #f1f5f9; }
+        body.dark-theme .tech-desc { color: #a3a3a3; }
+        body.dark-theme .tasks-list li { color: #a3a3a3; }
+        body.dark-theme .tasks-list li:before { color: #60a5fa; }
+        body.dark-theme .tool-badge {
+            background: linear-gradient(135deg, #1e3a8a, #4c1d95);
+        }
+        body.dark-theme .footer {
+            background: #000000;
+            color: #666666;
+        }
+        
+        /* ==================== کامپوننت‌های مشترک ==================== */
+        .navbar {
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            border-radius: 60px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 0.45rem 1.3rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .nav-btn { background: #3b82f6; color: white; }
+        .theme-btn { background: #475569; color: white; }
+        .nav-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 12px; font-weight: 800; }
+        .hero p { font-size: 1rem; opacity: 0.8; }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .domain-card {
+            border-radius: 20px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+        .domain-card:hover { transform: translateY(-4px); }
+        
+        .card-header {
+            padding: 22px 28px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .card-header i { font-size: 2.2rem; }
+        .card-header h2 { font-size: 1.5rem; margin: 0; font-weight: 700; }
+        .badge {
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: auto;
+        }
+        
+        .card-body { padding: 28px; }
+        .description {
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            border-right: 4px solid;
+            padding-right: 18px;
+        }
+        .section { margin-bottom: 24px; }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .tech-item {
+            padding: 14px 16px;
+            border-radius: 14px;
+            transition: all 0.2s;
+        }
+        .tech-item:hover { transform: translateX(-3px); }
+        .tech-name { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+        .tech-desc { font-size: 0.8rem; line-height: 1.5; opacity: 0.8; }
+        
+        .tasks-list {
+            list-style: none;
+            padding: 0;
+        }
+        .tasks-list li {
+            padding: 6px 0;
+            padding-right: 24px;
+            position: relative;
+            font-size: 0.85rem;
+        }
+        .tasks-list li:before {
+            content: "✓";
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+        
+        .tools-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .tool-badge {
+            color: white;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+        .tool-badge:hover { transform: scale(1.05); }
+        
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            margin-top: 48px;
+            border-radius: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .hero h1 { font-size: 1.5rem; }
+            .navbar { flex-direction: column; text-align: center; border-radius: 30px; top: 12px; }
+            .nav-buttons { width: 100%; justify-content: center; }
+            .card-header { padding: 18px 20px; }
+            .card-header h2 { font-size: 1.2rem; }
+            .card-header i { font-size: 1.6rem; }
+            .badge { margin-right: 0; }
+            .card-body { padding: 20px; }
+            .tech-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.3rem; }
+            .section-title { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo"><i class="fas fa-code"></i> EduHub</div>
+    <div class="nav-buttons">
+        <button id="themeToggleBtn" class="nav-btn theme-btn"><i class="fas fa-moon"></i> <span>تم دارک</span></button>
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> خانه</a>
+    </div>
+</div>
+
+<div class="hero">
+    <h1>🧠 نقشه جامع برنامه‌نویسی</h1>
+    <p>از مبتدی تا حرفه‌ای | راهنمای کامل ۱۲ حوزه تخصصی با تمام جزئیات</p>
+</div>
+
+<div class="container">
+    
+    <!-- Frontend -->
+    <div class="domain-card">
+        <div class="card-header">
+            <i class="fab fa-react"></i>
+            <h2>🎨 توسعه فرانت‌اند (Front-End)</h2>
+            <div class="badge">محبوب‌ترین مسیر شروع</div>
+        </div>
+        <div class="card-body">
+            <div class="description">فرانت‌اند یعنی هر چیزی که کاربر می‌بیند و با آن تعامل دارد. این حوزه به هنر و خلاقیت نزدیک‌ترین حوزه برنامه‌نویسی است. هدف اصلی: ساختن تجربه کاربری روان، زیبا و سریع.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-code"></i> <span>🔧 کتابخانه‌ها و فریمورک‌های اصلی</span></div>
+                <div class="tech-grid"><div class="tech-item"><div class="tech-name">⚛️ React.js</div><div class="tech-desc">محصول فیسبوک، قدرتمندترین کتابخانه برای ساخت UI. مبتنی بر کامپوننت، Virtual DOM، اکوسیستم عظیم (Next.js، Redux، React Native).</div></div>
+                <div class="tech-item"><div class="tech-name">💚 Vue.js</div><div class="tech-desc">فریمورک پیشرو و ساده، منحنی یادگیری ملایم، عملکرد عالی. Nuxt.js برای SSR، Pinia برای state management.</div></div>
+                <div class="tech-item"><div class="tech-name">🅰️ Angular</div><div class="tech-desc">محصول گوگل، فریمورک کامل با TypeScript، مناسب پروژه‌های سازمانی بزرگ.</div></div>
+                <div class="tech-item"><div class="tech-name">🎨 Tailwind CSS</div><div class="tech-desc">کتابخانه utility-first، طراحی سریع بدون خروج از HTML، سفارشی‌سازی عالی.</div></div>
+                <div class="tech-item"><div class="tech-name">🎭 Bootstrap</div><div class="tech-desc">کلاسیک و محبوب، Grid system عالی، مناسب MVP و ادمین پنل‌ها.</div></div>
+                <div class="tech-item"><div class="tech-name">🔄 Redux / Zustand</div><div class="tech-desc">مدیریت state در اپلیکیشن‌های بزرگ. Zustand سبک و ساده برای React.</div></div></div></div>
+            <div class="section"><div class="section-title"><i class="fas fa-tasks"></i> <span>✅ وظایف روزمره و چالش‌ها</span></div>
+                <ul class="tasks-list"><li>پیاده‌سازی طراحی‌های UI/UX از Figma یا Adobe XD به کد</li><li>ساخت SPA با روتینگ سمت کلاینت</li><li>اتصال به REST API یا GraphQL</li><li>بهینه‌سازی عملکرد (Lazy Loading، Code Splitting)</li><li>سئو (SEO) با استفاده از SSR/SSG (Next.js، Nuxt)</li><li>تست واحد با Jest، React Testing Library</li></ul></div>
+            <div class="section"><div class="section-title"><i class="fas fa-wrench"></i> <span>🛠️ ابزارهای مکمل</span></div><div class="tools-badges"><span class="tool-badge">Webpack / Vite</span><span class="tool-badge">ESLint / Prettier</span><span class="tool-badge">Git / GitHub</span><span class="tool-badge">Figma</span><span class="tool-badge">Chrome DevTools</span><span class="tool-badge">Storybook</span></div></div>
+        </div>
+    </div>
+
+    <!-- Backend -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-server"></i><h2>⚙️ توسعه بک‌اند (Back-End)</h2><div class="badge">موتور محرک برنامه</div></div>
+        <div class="card-body"><div class="description">پشت صحنه هر وب‌سایت و اپلیکیشن: مدیریت سرور، پایگاه داده، منطق کسب‌وکار، امنیت و APIها.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-database"></i> <span>🗄️ زبان‌ها و فریمورک‌ها</span></div>
+                <div class="tech-grid"><div class="tech-item"><div class="tech-name">🐍 Python + Django/Flask/FastAPI</div><div class="tech-desc">ساده، قدرتمند، عالی برای ML و پروتوتایپ سریع.</div></div>
+                <div class="tech-item"><div class="tech-name">🟢 Node.js + Express/Nest.js</div><div class="tech-desc">جاوااسکریپت در سمت سرور، غیرهمزمان و رویدادمحور.</div></div>
+                <div class="tech-item"><div class="tech-name">☕ Java + Spring Boot</div><div class="tech-desc">استاندارد صنعت بانکی و سازمانی. امنیت بالا، عملکرد عالی.</div></div>
+                <div class="tech-item"><div class="tech-name">🔷 Go (Golang)</div><div class="tech-desc">هم‌روندی فوق‌العاده، محبوب در Docker، Kubernetes.</div></div>
+                <div class="tech-item"><div class="tech-name">💎 Ruby on Rails</div><div class="tech-desc">محبوب برای MVP، توسعه سریع.</div></div>
+                <div class="tech-item"><div class="tech-name">🔷 .NET Core (C#)</div><div class="tech-desc">محصول مایکروسافت، قدرتمند برای Enterprise.</div></div></div></div>
+            <div class="section"><div class="section-title"><i class="fas fa-database"></i> <span>💾 پایگاه‌های داده</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🐘 PostgreSQL</div><div class="tech-desc">پیشرفته‌ترین دیتابیس متن‌باز رابطه‌ای.</div></div><div class="tech-item"><div class="tech-name">🐬 MySQL / MariaDB</div><div class="tech-desc">محبوب و سریع، مناسب وردپرس، لاراول.</div></div><div class="tech-item"><div class="tech-name">🍃 MongoDB</div><div class="tech-desc">NoSQL مستندگرا، مقیاس‌پذیری افقی عالی.</div></div><div class="tech-item"><div class="tech-name">⚡ Redis</div><div class="tech-desc">ذخیره‌سازی در حافظه برای کش، نشست کاربر.</div></div></div></div>
+        </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fab fa-android"></i><h2>📱 برنامه‌نویسی موبایل</h2><div class="badge">Native & Cross-Platform</div></div>
+        <div class="card-body"><div class="description">اپلیکیشن‌هایی که توی جیب میلیاردها نفر قرار می‌گیرند. از اندروید و iOS گرفته تا کراس پلتفرم.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-mobile-alt"></i> <span>📲 Native Development (بومی)</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🤖 Android - Kotlin</div><div class="tech-desc">زبان رسمی گوگل برای اندروید. Jetpack Compose برای UI مدرن.</div></div><div class="tech-item"><div class="tech-name">🍎 iOS - Swift</div><div class="tech-desc">زبان امن و سریع اپل، SwiftUI جدید.</div></div></div></div>
+            <div class="section"><div class="section-title"><i class="fas fa-sync-alt"></i> <span>🔄 Cross-Platform (چندسکویی)</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🦋 Flutter (Dart)</div><div class="tech-desc">محصول گوگل، UI زیبا، Hot Reload، یک کد برای iOS، Android، Web.</div></div><div class="tech-item"><div class="tech-name">⚛️ React Native</div><div class="tech-desc">بر پایه React، استفاده از جاوااسکریپت، جامعه بزرگ.</div></div></div></div>
+        </div>
+    </div>
+
+    <!-- Data Science -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-brain"></i><h2>🤖 علم داده و هوش مصنوعی</h2><div class="badge">آینده فناوری</div></div>
+        <div class="card-body"><div class="description">استخراج دانش از داده و ساخت سیستم‌هایی که یاد می‌گیرند. از تحلیل داده تا یادگیری عمیق.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-chart-line"></i> <span>📊 ابزارهای تحلیل داده</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🐍 Python (Pandas, NumPy)</div><div class="tech-desc">اکوسیستم کامل برای علم داده.</div></div><div class="tech-item"><div class="tech-name">📈 Matplotlib / Seaborn</div><div class="tech-desc">کتابخانه‌های مصورسازی داده.</div></div></div></div>
+            <div class="section"><div class="section-title"><i class="fas fa-robot"></i> <span>🧠 یادگیری ماشین و Deep Learning</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">📚 Scikit-learn</div><div class="tech-desc">کتابخانه استاندارد ML کلاسیک.</div></div><div class="tech-item"><div class="tech-name">🔥 PyTorch</div><div class="tech-desc">محبوب در تحقیقات دانشگاهی و صنعت.</div></div><div class="tech-item"><div class="tech-name">🧩 TensorFlow</div><div class="tech-desc">محصول گوگل، پشتیبانی تولیدی عالی.</div></div></div></div>
+        </div>
+    </div>
+
+    <!-- Game Development -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-gamepad"></i><h2>🎮 توسعه بازی</h2><div class="badge">سرگرمی + ریاضی + هنر</div></div>
+        <div class="card-body"><div class="description">ساختن دنیایی که کاربر در آن غرق می‌شود. ترکیبی از برنامه‌نویسی، فیزیک، گرافیک، هوش مصنوعی.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-cogs"></i> <span>🎮 موتورهای بازیسازی</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🎲 Unity (C#)</div><div class="tech-desc">محبوب‌ترین موتور برای بازی‌های 2D/3D موبایل.</div></div><div class="tech-item"><div class="tech-name">🎬 Unreal Engine (C++)</div><div class="tech-desc">قدرتمند برای گرافیک بالا و بازی‌های AAA.</div></div><div class="tech-item"><div class="tech-name">🕹️ Godot (GDScript)</div><div class="tech-desc">کاملاً رایگان و متن‌باز، سبک و سریع.</div></div></div></div>
+        </div>
+    </div>
+
+    <!-- DevOps -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fab fa-docker"></i><h2>☁️ دوواپس و زیرساخت (DevOps)</h2><div class="badge">اتوماسیون، مقیاس، قابلیت اطمینان</div></div>
+        <div class="card-body"><div class="description">پل زدن بین توسعه و عملیات. خودکارسازی فرایندهای استقرار، مدیریت زیرساخت به عنوان کد.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-box"></i> <span>🐳 ظرفی‌سازی و ارکستراسیون</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🐳 Docker</div><div class="tech-desc">بسته‌بندی اپلیکیشن در کانتینرهای ایزوله.</div></div><div class="tech-item"><div class="tech-name">☸️ Kubernetes (K8s)</div><div class="tech-desc">ارکستراسیون کانتینرها، مدیریت خودکار Deployment.</div></div></div></div>
+            <div class="section"><div class="section-title"><i class="fas fa-infinity"></i> <span>🔄 CI/CD</span></div><div class="tools-badges"><span class="tool-badge">GitHub Actions</span><span class="tool-badge">GitLab CI</span><span class="tool-badge">Jenkins</span><span class="tool-badge">ArgoCD</span></div></div>
+        </div>
+    </div>
+
+    <!-- Cybersecurity -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-shield-virus"></i><h2>🔒 امنیت سایبری (Cybersecurity)</h2><div class="badge">حفاظت از دنیای دیجیتال</div></div>
+        <div class="card-body"><div class="description">شناسایی آسیب‌پذیری‌ها، تست نفوذ، رمزنگاری، امنیت شبکه و برنامه.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-user-secret"></i> <span>🕵️ حوزه‌های تخصصی</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🛡️ Penetration Testing</div><div class="tech-desc">ابزارها: Metasploit، Burp Suite، Nmap، Kali Linux.</div></div><div class="tech-item"><div class="tech-name">🔐 Application Security</div><div class="tech-desc">OWASP Top 10، بررسی کد و طراحی امن.</div></div></div></div>
+            <div class="section"><div class="section-title"><i class="fas fa-certificate"></i> <span>📜 گواهینامه‌های معتبر</span></div><div class="tools-badges"><span class="tool-badge">CEH</span><span class="tool-badge">OSCP</span><span class="tool-badge">CISSP</span><span class="tool-badge">CompTIA Security+</span></div></div>
+        </div>
+    </div>
+
+    <!-- Cloud -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-cloud-upload-alt"></i><h2>🌩️ مهندسی ابر (Cloud Computing)</h2><div class="badge">ارائه خدمات از راه دور</div></div>
+        <div class="card-body"><div class="description">طراحی، پیاده‌سازی و مدیریت زیرساخت‌های ابری. تمرکز بر مقیاس‌پذیری، در دسترس بودن بالا.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-building"></i> <span>🏢 ارائه‌دهندگان ابری</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">☁️ AWS</div><div class="tech-desc">بزرگ‌ترین و کامل‌ترین ارائه‌دهنده.</div></div><div class="tech-item"><div class="tech-name">🔷 Azure</div><div class="tech-desc">قوی در یکپارچگی با محصولات مایکروسافت.</div></div><div class="tech-item"><div class="tech-name">🟢 GCP</div><div class="tech-desc">تخصص در داده بزرگ (BigQuery) و یادگیری ماشین.</div></div></div></div>
+        </div>
+    </div>
+
+    <!-- Blockchain -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-link"></i><h2>⛓️ بلاکچین و ارزهای دیجیتال</h2><div class="badge">تمرکززدایی، شفافیت</div></div>
+        <div class="card-body"><div class="description">توسعه قراردادهای هوشمند، اپلیکیشن‌های غیرمتمرکز (dApps).</div>
+            <div class="section"><div class="section-title"><i class="fab fa-ethereum"></i> <span>⛓️ پلتفرم‌های اصلی</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🔷 Ethereum + Solidity</div><div class="tech-desc">محبوب‌ترین بستر قرارداد هوشمند.</div></div><div class="tech-item"><div class="tech-name">🟢 Solana (Rust)</div><div class="tech-desc">سرعت بالا و کارمزد کم.</div></div><div class="tech-item"><div class="tech-name">🔴 Binance Smart Chain</div><div class="tech-desc">سازگار با EVM، کارمزد کمتر.</div></div></div></div>
+        </div>
+    </div>
+
+    <!-- QA -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-vial"></i><h2>🧪 تضمین کیفیت و تست (QA)</h2><div class="badge">اطمینان از کارکرد درست</div></div>
+        <div class="card-body"><div class="description">جلوگیری از باگ‌ها قبل از رسیدن به دست کاربر. تست خودکار، عملکرد، امنیت.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-robot"></i> <span>🤖 تست خودکار</span></div><div class="tech-grid"><div class="tech-item"><div class="tech-name">🌐 Selenium / Cypress</div><div class="tech-desc">تست مرورگر (E2E).</div></div><div class="tech-item"><div class="tech-name">📱 Appium</div><div class="tech-desc">تست خودکار موبایل کراس پلتفرم.</div></div><div class="tech-item"><div class="tech-name">⚡ Postman</div><div class="tech-desc">تست خودکار API.</div></div></div></div>
+        </div>
+    </div>
+
+    <!-- Product Management -->
+    <div class="domain-card">
+        <div class="card-header"><i class="fas fa-chart-line"></i><h2>📊 مدیریت محصول (Product Management)</h2><div class="badge">ارتباط بین کسب‌وکار، طراحی و مهندسی</div></div>
+        <div class="card-body"><div class="description">محصول مناسب، برای کاربر مناسب، در زمان مناسب. Product Manager مسئول استراتژی و اولویت‌بندی.</div>
+            <div class="section"><div class="section-title"><i class="fas fa-lightbulb"></i> <span>🔑 مهارت‌های اصلی</span></div><ul class="tasks-list"><li>تحلیل نیازهای کاربر و بازار</li><li>نوشتن User Stories و PRD</li><li>اولویت‌بندی با چارچوب RICE، MoSCoW</li><li>مدیریت بکلاگ محصول و هماهنگی با تیم Scrum</li><li>تحلیل داده‌های محصول (Google Analytics، Mixpanel)</li></ul></div>
+            <div class="section"><div class="section-title"><i class="fas fa-chart-pie"></i> <span>📈 ابزارهای مفید</span></div><div class="tools-badges"><span class="tool-badge">Jira / Trello</span><span class="tool-badge">Notion / Confluence</span><span class="tool-badge">Figma / Miro</span><span class="tool-badge">Amplitude / Mixpanel</span></div></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>✨ بهترین زمان برای شروع، همیشه همین الان است ✨</p>
+    <p style="margin-top: 12px; font-size: 0.7rem; opacity: 0.6;">🌍 نقشه راه جامع برنامه‌نویسی | EduHub</p>
+</div>
+
+<script>
+    // ==================== مدیریت تم ====================
+    function initTheme() {
+        const saved = localStorage.getItem('eduhub-theme');
+        const btn = document.getElementById('themeToggleBtn');
+        if (saved === 'dark') {
+            document.body.classList.add('dark-theme');
+            document.body.classList.remove('light-theme');
+            if (btn) btn.innerHTML = '<i class="fas fa-sun"></i> <span>تم روشن</span>';
+        } else {
+            document.body.classList.add('light-theme');
+            document.body.classList.remove('dark-theme');
+            if (btn) btn.innerHTML = '<i class="fas fa-moon"></i> <span>تم دارک</span>';
+        }
+    }
+    
+    function toggleTheme() {
+        if (document.body.classList.contains('dark-theme')) {
+            document.body.classList.remove('dark-theme');
+            document.body.classList.add('light-theme');
+            localStorage.setItem('eduhub-theme', 'light');
+            const btn = document.getElementById('themeToggleBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-moon"></i> <span>تم دارک</span>';
+        } else {
+            document.body.classList.remove('light-theme');
+            document.body.classList.add('dark-theme');
+            localStorage.setItem('eduhub-theme', 'dark');
+            const btn = document.getElementById('themeToggleBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-sun"></i> <span>تم روشن</span>';
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        initTheme();
+        const themeBtn = document.getElementById('themeToggleBtn');
+        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+    });
+</script>
+
+</body>
+</html>
